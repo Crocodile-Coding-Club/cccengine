@@ -1,16 +1,18 @@
-from Event import Event
+from cccengine.events.Event import Event
 from Player import Player
+
 
 class PlayerCastEvent(Event):
     """
     PlayerCastEvent Class
     """
-    def __init__(self, player = None, power = None):
+
+    def __init__(self, player=None, power=None):
         """
         Initialize a PlayerCastEvent instance
         """
         assert type(player) == Player, "[Error]: player must be a Player instance"
-        
+
         super().__init__()
 
         self.event_name = "Player Cast Event"
