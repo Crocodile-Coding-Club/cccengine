@@ -1,37 +1,35 @@
 import pygame
 
 class BackgroundImage(pygame.sprite.Sprite):
-    def __init__(self, imagePath, x, y, width, height, position: str = "topleft"):
-        self.image = pygame.image.load(imagePath)
-        self.image = pygame.transform.scale(self.image, (width, height))
+    def __init__(self, image, x, y, width, height, position: str = "topleft"):
+        self.image = image
         self.rect = self.image.get_rect()
 
         if position == "center":
-            self.rect.center(x, y)
+            self.rect.center = (x, y)
         elif position == "topleft":
-            self.rect.topleft(x, y)
+            self.rect.topleft = (x, y)
         elif position == "topright":
-            self.rect.topright(x, y)
+            self.rect.topright = (x, y)
         elif position == "bottomleft":
-            self.rect.bottomleft(x, y)
+            self.rect.bottomleft = (x, y)
         elif position == "bottomright":
-            self.rect.bottomright(x, y)
+            self.rect.bottomright = (x, y)
 
 
 class Gui:
-    def __init__(self, screen, backgroundImagePath, x, y, width, height, buttons: list[Button], position: str = "topleft"):
-        self.backgroundImage = BackgroundImage(backgroundImagePath, x, y, width, height, position)
-        self.rect = self.image.get_rect()
+    def __init__(self, screen, backgroundImage, x, y, width, height, buttons: list = None, position: str = "topleft"):
+        self.screen = screen
+        self.backgroundImage = BackgroundImage(backgroundImage, x, y, width, height, position)
+        self.surface = self.backgroundImage.image
         self.buttons = pygame.sprite.Group()
-        for button in buttons:
-            self.buttons.add(button)
+        if buttons != None:
+            for button in buttons:
+                self.buttons.add(button)
 
     def update(self):
        self.buttons.update()
-
-    def open(self):
-        pass
     
-    def display(self):
-        self.backgroundImage.draw(self.screen)
-        self.buttons.draw(self.screen)
+    def draw(self):
+        self.screen.blit(self.backgroundImage.image, self.backgroundImage.rect)
+        #self.buttons.draw(surface=self.surface)

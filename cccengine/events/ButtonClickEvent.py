@@ -1,6 +1,5 @@
 import pygame
 from cccengine.events.Event import Event
-from gui.Gui import Gui
 
 
 class ButtonClickEvent(Event):
@@ -8,23 +7,30 @@ class ButtonClickEvent(Event):
     ButtonClickEvent Class
     """
 
-    def __init__(self, button: Button, clickType, button: Button):
+    def __init__(self, button, clicks):
         """
         Initialize a ButtonClickEvent instance
         """
-        assert type(gui) == Gui, "[Error]: gui must be a Gui instance"
 
         super().__init__()
 
         self.event_name = "Button Click Event"
         self.button = button
+        self.clicks = clicks
+
+    def getClicks(self):
+        return self.clicks
+
+    def getButtons(self):
+        return self.button
 
     def getGui(self):
         """
         Get the gui of the event
         """
-        return self.gui
+        return self.button.getGui()
 
     def execute(self):
         if self.cancel == False:
-            self.gui.display()
+            self.button.clicked(self.clicks)
+ 
