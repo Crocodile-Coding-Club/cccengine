@@ -1,11 +1,20 @@
 import pygame
-import cccengine.gui.Button
+import cccengine.gui.Button as Button
+
 
 class BackgroundImage(pygame.sprite.Sprite):
-    def __init__(self, image: pygame.surface.Surface, x, y, width, height, position: str = "topleft"):
+    def __init__(
+        self,
+        image: pygame.surface.Surface,
+        x: int,
+        y: int,
+        width: int,
+        height: int,
+        position: str = "topleft",
+    ):
         super().__init__()
-        self.image = image
-        self.rect = self.image.get_rect()
+        self.image: pygame.surface.Surface = image
+        self.rect: pygame.rect.Rect = self.image.get_rect()
 
         if position == "center":
             self.rect.center = (x, y)
@@ -28,15 +37,14 @@ class Gui:
         y: int,
         width: int,
         height: int,
-        buttons: list["cccengine.gui.Button.Button"] = None,
+        buttons: list["Button.Button"] = [],
         position: str = "topleft",
     ):
         self.screen: pygame.surface.Surface = screen
-        self.backgroundImage = backgroundImage
-        self.buttons = pygame.sprite.Group()
-        if buttons != None:
-            for button in buttons:
-                self.buttons.add(button)
+        self.backgroundImage: BackgroundImage = backgroundImage
+        self.buttons: pygame.sprite.Group = pygame.sprite.Group()
+        for button in buttons:
+            self.buttons.add(button)
 
     def update(self):
         self.buttons.update()

@@ -1,11 +1,11 @@
 import pygame
-from cccengine.gui.Gui import Gui
+import cccengine.gui.Gui as Gui
 from cccengine.events.ButtonClickEvent import ButtonClickEvent
 
 
 class Button(pygame.sprite.Sprite):
     def __init__(self, gui, imagePath, x, y, width, height, position: str = "topleft"):
-        self.gui: "Gui" = gui
+        self.gui: "Gui.Gui" = gui
         self.image = pygame.image.load(imagePath)
         self.image = pygame.transform.scale(self.image, (width, height))
         self.rect = self.image.get_rect()
