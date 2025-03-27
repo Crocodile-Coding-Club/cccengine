@@ -66,8 +66,9 @@ class Inventory:
         Remove an amount of item from the inventory
         """
         item = self.items[object.getCategory()][object.getID()]
-        assert amount <= item["amount"], "[Error]: amount is over the quantity owned"
+        print(item["owned"])
+        assert amount <= item["owned"], "[Error]: amount is over the quantity owned"
 
-        item["amount"] -= amount
-        if item["amount"] == 0:
-            del item
+        item["owned"] -= amount
+        if item["owned"] == 0:
+            del self.items[object.getCategory()][object.getID()]
