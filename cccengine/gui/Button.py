@@ -4,10 +4,10 @@ from cccengine.events.ButtonClickEvent import ButtonClickEvent
 
 
 class Button(pygame.sprite.Sprite):
-    def __init__(self, gui, imagePath, x, y, width, height, position: str = "topleft"):
+    def __init__(self, gui, imagePath, x, y, position: str = "topleft"):
+        pygame.sprite.Sprite.__init__(self)
         self.gui: "Gui.Gui" = gui
         self.image = pygame.image.load(imagePath)
-        self.image = pygame.transform.scale(self.image, (width, height))
         self.rect = self.image.get_rect()
 
         if position == "center":

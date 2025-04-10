@@ -41,7 +41,13 @@ class Gui:
         position: str = "topleft",
     ):
         self.screen: pygame.surface.Surface = screen
-        self.backgroundImage: BackgroundImage = backgroundImage
+        if backgroundImage != None:
+            self.backgroundImage: BackgroundImage = backgroundImage
+            self.surface = backgroundImage.image
+            self.rect = backgroundImage.image.get_rect()
+        else:
+            self.surface = pygame.surface.Surface((width, height)).convert_alpha()
+            self.rect = self.surface.get_rect().topleft = [x, y]
         self.buttons: pygame.sprite.Group = pygame.sprite.Group()
         for button in buttons:
             self.buttons.add(button)
@@ -50,5 +56,5 @@ class Gui:
         self.buttons.update()
 
     def draw(self):
-        self.screen.blit(self.backgroundImage.image, self.backgroundImage.rect)
-        # self.buttons.draw(surface=self.surface)
+        self.screen.blit(self.surface, self.rect)
+        self.buttons.draw(surface=self.surface)
