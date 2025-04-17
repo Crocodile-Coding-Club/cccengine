@@ -1,4 +1,4 @@
-from cccengine.events import Event
+from cccengine.events.Event import Event
 
 
 class EventListener:
@@ -8,4 +8,4 @@ class EventListener:
         EventListener.listeners.append(self)
 
     def onEvent(self, event: Event):
-        pass
+        event.execute()

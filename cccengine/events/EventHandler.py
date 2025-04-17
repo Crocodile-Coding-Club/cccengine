@@ -1,4 +1,3 @@
-from logging import handlers
 from cccengine.events.EventListener import EventListener
 from cccengine.events.Event import Event
 
@@ -8,28 +7,21 @@ class EventHandler:
     EventHandler Class
     """
 
-    def __init__(self, events=[]):
+    def __init__(self, eventListeners: list[EventListener] = []):
         """
         Initialize a EventHandler instance
         """
-        EventHandler.handlers.append(self)
+        self.eventListeners: list[EventListener] = eventListeners
+        self.events: list[Event]  = []
 
     def execute(self):
         """
         Execute every Events
         """
-        for event in self.events:
-            for listener in EventListener.listeners:
-                listener.onEvent(event)
-            self.launchEvent(event)
-
-    def launchEvent(self, event):
-        """
-        Execute one event
-        """
-        assert type(event) == Event, "[Error]: event must be an Event instance"
-
-        event.execute()
+        for eventListener in self.eventListeners:
+            for event in self.events:
+                eventListener.onEvent(event)
+                self.events.remove(event)
 
     def addEvent(self, event):
         """
