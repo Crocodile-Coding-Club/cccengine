@@ -12,9 +12,8 @@ class ButtonClickEvent(Event):
         Initialize a ButtonClickEvent instance
         """
 
-        super().__init__()
+        super().__init__("Button Click Event")
 
-        self.event_name = "Button Click Event"
         self.button = button
         self.clicks = clicks
 
