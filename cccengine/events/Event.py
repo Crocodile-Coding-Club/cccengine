@@ -7,7 +7,7 @@ class Event:
         Initialize an Event instance
         """
         assert type(event_name) == str, "[Error]: event_name must be a string"
-        assert type(cancel) == str, "[Error]: cancel must be a boolean"
+        assert type(cancel) == bool, "[Error]: cancel must be a boolean"
 
         self.event_name = event_name
         self.cancel = cancel
