@@ -4,7 +4,7 @@ class Item:
     """
     def __init__(self, item_name, item_ID, category):
         """
-        Item Class
+        Initialize an Item instance
         """
         self.item_name = item_name
         self.item_ID = item_ID
