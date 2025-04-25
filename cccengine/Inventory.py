@@ -31,6 +31,9 @@ class Inventory:
         """
 
     def addCategory(self, name):
+        """
+        Add an item category in the inventory
+        """
         self.items[name] = {}
 
     def addItem(self, object, amount = 1):
