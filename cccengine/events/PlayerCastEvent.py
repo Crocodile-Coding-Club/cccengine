@@ -13,9 +13,8 @@ class PlayerCastEvent(Event):
         """
         assert type(player) == Player, "[Error]: player must be a Player instance"
 
-        super().__init__()
+        super().__init__("Player Cast Event")
 
-        self.event_name = "Player Cast Event"
         self.player = player
         self.power = power
 
