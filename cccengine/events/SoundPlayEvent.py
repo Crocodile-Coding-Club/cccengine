@@ -15,9 +15,8 @@ class SoundPlayEvent(Event):
             type(sound) == pygame.mixer.Sound
         ), "[Error]: sound must be a pygame.mixer.Sound instance"
 
-        super().__init__()
+        super().__init__("Sound Play Event")
 
-        self.event_name = "Sound Play Event"
         self.sound = sound
 
     def getSound(self):
