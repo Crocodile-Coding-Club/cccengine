@@ -11,9 +11,8 @@ class GuiOpenEvent(Event):
         """
         Initialize a GuiOpenEvent instance
         """
-        super().__init__()
+        super().__init__("Gui Open Event")
 
-        self.event_name = "Gui Open Event"
         self.gui = gui
         self.guiManager = guiManager
 
