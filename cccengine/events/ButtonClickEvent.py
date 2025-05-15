@@ -1,5 +1,6 @@
 import pygame
 from cccengine.events.Event import Event
+import cccengine.events.EventHandler as EventHandler
 
 
 class ButtonClickEvent(Event):
@@ -7,7 +8,7 @@ class ButtonClickEvent(Event):
     ButtonClickEvent Class
     """
 
-    def __init__(self, button, clicks):
+    def __init__(self, eventHandler: "EventHandler.EventHandler" , button, clicks):
         """
         Initialize a ButtonClickEvent instance
         """
@@ -16,6 +17,8 @@ class ButtonClickEvent(Event):
 
         self.button = button
         self.clicks = clicks
+        self.eventHandler: "EventHandler.EventHandler" = eventHandler
+        eventHandler.addEvent(self)
 
     def getClicks(self):
         return self.clicks
@@ -32,4 +35,5 @@ class ButtonClickEvent(Event):
     def execute(self):
         if self.cancel == False:
             self.button.clicked(self.clicks)
+            print("works")
  

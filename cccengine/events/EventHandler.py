@@ -27,7 +27,7 @@ class EventHandler:
         """
         Add an Event
         """
-        assert type(event) == Event, "[Error]: event must be an Event instance"
+        assert issubclass(type(event), Event)==True
 
         self.events.append(event)
 

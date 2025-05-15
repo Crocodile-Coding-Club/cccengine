@@ -9,6 +9,7 @@ class Button(pygame.sprite.Sprite):
         self.gui: "Gui.Gui" = gui
         self.image = pygame.image.load(imagePath)
         self.rect = self.image.get_rect()
+        self.eventHandler = gui.getEventHandler()
 
         if position == "center":
             self.rect.center = (x, y)
@@ -20,6 +21,8 @@ class Button(pygame.sprite.Sprite):
             self.rect.bottomleft = (x, y)
         elif position == "bottomright":
             self.rect.bottomright = (x, y)
+        
+        gui.buttons.add(self)
 
     def update(self):
         mousePos = pygame.mouse.get_pos()
@@ -27,7 +30,7 @@ class Button(pygame.sprite.Sprite):
 
         if any(clicks):
             if self.rect.collidepoint(mousePos):
-                ButtonClickEvent(self, clicks)
+                ButtonClickEvent(self.eventHandler, self, clicks)
 
     def clicked(self, clicks):
         pass

@@ -1,5 +1,6 @@
 import pygame
 import cccengine.gui.Button as Button
+import cccengine.events.EventHandler as EventHandler
 
 
 class BackgroundImage(pygame.sprite.Sprite):
@@ -30,6 +31,7 @@ class Gui:
     def __init__(
         self,
         screen: pygame.surface.Surface,
+        eventHandler: "EventHandler.EventHandler",
         x: int,
         y: int,
         width: int = None,
@@ -39,6 +41,7 @@ class Gui:
         position: str = "topleft",
     ):
         self.screen: pygame.surface.Surface = screen
+        self.eventHandler = eventHandler
         if backgroundImage == None:
             self.surface = pygame.surface.Surface((width, height)).convert_alpha()
         else:
@@ -61,6 +64,9 @@ class Gui:
         self.buttons: pygame.sprite.Group = pygame.sprite.Group()
         for button in buttons:
             self.buttons.add(button)
+
+    def getEventHandler(self):
+        return self.eventHandler
 
     def update(self):
         self.buttons.update()
