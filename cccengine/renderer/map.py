@@ -27,9 +27,9 @@ class Map:
     def readMap(self, chunks):
         chunk_dict: dict = {}
         print(chunks)
-        for chunk_name, chunk in chunks:
+        for chunk_name, chunk in chunks.items():
             chunk_name: str = chunk_name.split("#")
-            chunk_dict[(chunk_name[3], chunk_name[4])] = Chunk(chunk_name[3], chunk_name[4], chunk, self.textures)
+            chunk_dict[(int(chunk_name[1]), int(chunk_name[2]))] = Chunk(int(chunk_name[1]), int(chunk_name[2]), chunk, self.textures)
         return chunk_dict
     
     def loadChunks(self, chunk_x, chunk_y):
